@@ -16,6 +16,7 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 
 import static helpers.DriverManager.*;
+import static helpers.Utils.*;
 
 public class ListenerFailure extends ExitCodeListener {
 
@@ -29,7 +30,7 @@ public class ListenerFailure extends ExitCodeListener {
     @Attachment(value = "Page screenshot", type = "image/jpg")
     public void saveScreenshotPNG (WebDriver driver, String testName) throws IOException {
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String screenshotName = testName + LocalDateTime.now().toString().replaceAll("[-+.^:,]","") + ".jpg";
+        String screenshotName = testName + "_" + getBrowser() + "_" + getEnvironment()+ "_" + LocalDateTime.now().toString().replaceAll("[-+.^:,]","") + ".jpg";
         System.out.println(screenshotName);
         File destination =new File(Paths.get(".").normalize().toAbsolutePath() + "\\screenshots\\" + screenshotName);
         FileUtils.copyFile(screenshot, destination);

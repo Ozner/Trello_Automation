@@ -9,6 +9,16 @@ El sitio web objetivo es [**Trello**](https://trello.com/)
 * Java 8 o superior.
 * Maven 
 
+## Entorno de ejecución
+
+El proyecto se desarrollo para ejecutar en Windows, es decir, los drivers utilizados estan descargados localmente en la carpeta drivers y son compatibles con las siguientes versiones de browsers.
+
+| Navegador | Versión
+| ------------- | ------------- |
+| Chrome | 90.0.4430.72 (Build oficial) (64 bits) |
+| Firefox  | 88.0 (64-bit)  |
+| Edge  | 90.0.818.41 (64-bits) |
+
 ## Ejecutar los test
 1. Clonar el proyecto.
 2. Ejecutar en el directorio del proyecto el comando
@@ -76,3 +86,8 @@ Para mas informacion visitar el [sitio](https://docs.qameta.io/allure/#_installi
 Igualmente existe el reporte generado por el plugin [surefire](https://maven.apache.org/surefire/maven-surefire-plugin/). En la carpeta target buscar y abrir el archivo index.html.
 
 ## Errores y mejoras conocidas.
+
+* Allure no captura las imagenes cuando el/los test fallan.
+* En algunas instancias el navegador levanta el sitio en español por lo cual los mensajes esperados de error no coinciden. Esto se deja asi para tener ejemplos de test fallidos y screenshots.
+Por ejemplo Chrome en modo headless ```mvn test -D headless=true```
+  

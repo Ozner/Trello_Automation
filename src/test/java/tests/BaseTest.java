@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 import static helpers.PropertiesReader.*;
 import static helpers.DriverManager.*;
+import static helpers.Utils.*;
 
 //@Listeners({helpers.ListenerFailure.class})
 public class BaseTest {
@@ -42,49 +43,10 @@ public class BaseTest {
                 Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe /T");
                 Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
                 Runtime.getRuntime().exec("taskkill /F /IM IEDriverServer.exe /T");
+                Runtime.getRuntime().exec("taskkill /F /IM msedgedriver.exe /T");
             }
         } catch(Exception ex){
             System.out.println("ERROR AFTER METHOD: " + ex);
-        }
-    }
-
-    public String getEnvironment(){
-        String selectedEnvironment = System.getProperty("environment");
-        String defaultEnvironment = getProperty("configurations","default_environment");
-        if(!Arrays.asList(getProperty("configurations","availables_environments").split(",")).contains(selectedEnvironment) ||
-                "".equals(selectedEnvironment) || selectedEnvironment.equals(null)) {
-            return defaultEnvironment;
-        } else {
-            return selectedEnvironment;
-        }
-    }
-
-    public String getBrowser(){
-        String selectedBrowser = System.getProperty("browser");
-        String defaultBrowser = getProperty("configurations", "default_browser");
-
-        if(!Arrays.asList(getProperty("configurations","availables_browsers").split(",")).contains(selectedBrowser) ||
-                "".equals(selectedBrowser) || selectedBrowser.equals(null)) {
-            return defaultBrowser;
-        } else {
-            return selectedBrowser;
-        }
-    }
-
-    public Boolean isHeadless(){
-        String isHeadless = System.getProperty("headless");
-
-        switch(isHeadless.toLowerCase()){
-            case "true":
-            case "t":
-            case "1":
-                return true;
-            case "false":
-            case "f":
-            case "0":
-                return false;
-            default:
-                return false;
         }
     }
 }

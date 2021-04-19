@@ -4,9 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 
 public class DriverManager {
 
@@ -24,18 +26,20 @@ public class DriverManager {
         WebDriver driver;
         switch (browserName.toLowerCase()) {
             case "firefox":
-                System.setProperty("webdriver.gecko.driver", "drivers\\geckodriver.exe");
-                /*FirefoxBinary firefoxBinary = new FirefoxBinary();
+                System.setProperty("webdriver.gecko.driver", "drivers\\geckodriver1.exe");
+                FirefoxOptions optionsFirefox = new FirefoxOptions();
                 if(headless)
-                    firefoxBinary.addCommandLineOptions("--headless");
-                firefoxBinary.addCommandLineOptions("--window-size=1280x720");
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.setBinary(firefoxBinary);*/
-                driver = new FirefoxDriver();
+                    optionsFirefox.setHeadless(true);
+                optionsFirefox.addArguments("start-maximized");
+                driver =  new FirefoxDriver(optionsFirefox);
                 break;
             case "edge":
-                System.setProperty("webdriver.edge.driver","drivers\\msedgedriver.exe");
-                driver = new EdgeDriver();
+                System.setProperty("webdriver.edge.driver","drivers\\msedgedriver2.exe");
+                EdgeOptions optionsEdge = new EdgeOptions();
+                if(headless)
+                    optionsEdge.addArguments("headless");
+                optionsEdge.addArguments("start-maximized");
+                driver = new EdgeDriver(optionsEdge);
                 break;
             default:
                 System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
