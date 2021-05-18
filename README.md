@@ -1,4 +1,4 @@
-# PRUEBA PYXIS - TRELLO AUTOMATION TEST
+# TRELLO AUTOMATION TEST
 
 Este proyecto es una es un framework de Selenium Webdriver, Maven y testNG. Contiene ademas reportes en ALlure.
 
